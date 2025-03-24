@@ -11,6 +11,7 @@ import {healthRouter} from './routes/health.js';
 import {userRouter} from './routes/user.js';
 import {authRouter} from './routes/auth.js';
 import {prodRouter} from './routes/product.js'
+import {orderRouter} from './routes/order.js';
 
 dotenv.config();
 console.log(process.env.MONGODB_URI)
@@ -47,6 +48,7 @@ app.use('/api/health', healthRouter);
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/product', prodRouter);
+app.use('/api/order', orderRouter);
 
 //TODO: Global Error Handler
 app.use((err, _req, res, next) => {

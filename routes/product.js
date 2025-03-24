@@ -1,6 +1,6 @@
 import express from "express";
 import Product from "../models/Product.js";
-import { userRouter } from "./user.js";
+
 
 export const prodRouter = express.Router();
 
@@ -24,7 +24,18 @@ prodRouter.post("/", async(req, res) => {
  */
 prodRouter.get('/', async(req,res) =>{
     try{
-        const prod = await Product.find();
+
+        const {category, search} = req.query;
+        let filter = {};
+        
+        if(category){
+            filter.category = category;
+        }
+        if(search){
+            filter.prodname = {$regex: search, $options: 'i'};
+        }
+
+        const prod = await Product.find(filter);
         res.json(prod).status(201);
     }catch(e){
         console.error(e);
@@ -79,6 +90,6 @@ prodRouter.delete("/:id", async(req,res) =>{
 
     }catch(e){
         console.error(e);
-        res.status(500).send(e.message);
+        res.send(e.message).status(500);
     }
 })
