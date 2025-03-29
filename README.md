@@ -1,3 +1,4 @@
+![GitHub stars](https://img.shields.io/github/stars/sri91524/capstoneproject-backend?style=flat-square)
 # RTT-60-2024 Class Repo
 
 ## Instructions
